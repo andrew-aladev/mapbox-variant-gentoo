@@ -1,9 +1,9 @@
 # Copyright 1999-2007 Gentoo Foundation
 # Distributed under the terms of the GNU General Public License v2
 
-EAPI="5"
+EAPI="6"
 
-inherit git-2
+inherit git-r3
 
 DESCRIPTION="An header-only alternative to boost::variant for C++11 and C++14."
 HOMEPAGE="https://github.com/mapbox/variant"
@@ -18,19 +18,16 @@ IUSE="test"
 RDEPEND=""
 DEPEND=""
 
-src_unpack() {
-    git-2_src_unpack
-}
-
 src_compile() {
     :
 }
 
 src_test() {
-    make test
+    default
+    emake test || die "test failed"
 }
 
 src_install() {
-    insinto /usr/include
-    doins -r include/*
+    insinto /usr/include || die "insinto failed"
+    doins -r include/* || die "doins failed"
 }
