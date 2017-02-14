@@ -23,7 +23,6 @@ src_compile() {
 }
 
 src_test() {
-    default
     emake test || die "test failed"
 }
 
